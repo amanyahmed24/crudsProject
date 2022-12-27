@@ -1,0 +1,110 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: system-ui;
+    border-radius: 4px;
+}
+body{
+    background-color: #222;
+    color: #fff;
+    transition: .9s;
+}
+
+.container{
+    width: 80%;
+    margin: auto;
+}
+
+.header{
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 20px;
+    padding: 10px 0;
+    margin: 20px;
+}
+input{
+    width: 100%;
+    background: #111;
+    color: #fff;
+    padding: 5px 10px;
+    margin: 5px;
+    border: none;
+    transition: .5s;
+
+}
+input:focus{
+    transform: scale(1.1);
+    letter-spacing: 3px;
+    outline: none;
+    background: #000;
+}
+.number{
+    display: flex;
+    justify-content: space-between;
+}
+.number #total{
+    background-color: #a00d02;
+    padding: 5px 10px;
+    margin: 5px;
+    cursor: pointer;
+    min-width: 20%;
+}
+#total::before{
+    content: "total : ";
+}
+button{
+    color: #fff;
+    background-color: #7924c7;
+    padding: 5px 10px;
+    margin: 5px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: .5s;
+    border-radius: 10px;
+    text-transform: capitalize;
+}
+button:focus{
+    transform: scale(1.1);
+    background-color: #a835e7e6;
+}
+#create{
+    width: 100%;
+}
+.search{
+    display: flex;
+    justify-content: space-between;
+}
+.search button{
+    width: 45%;
+}
+table{
+    width: 100%;
+    text-align: center;
+    margin: 10px 0;
+}
+table th{
+    text-transform: uppercase;
+}
+th, td{
+    padding: 5px;
+}
+#all{
+    width: 100%;
+    margin: 20px 0;
+}
+#search{
+    margin: 10px 0;
+}
+.on-off i{
+    font-size: 30px;
+    position: absolute;
+    top: 50px;
+    left: 11%;
+    cursor: pointer;
+    color: #7924c7;
+}
+#sun{
+    display: none;
+}
