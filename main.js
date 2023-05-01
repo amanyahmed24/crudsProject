@@ -79,21 +79,22 @@ function clearInputs(){
 };
 
 // read products 
+ let tbody = document.getElementById("tbody");
 function showData(){
-    let tbody = document.getElementById("tbody");
-    let table;
+ 
+    let table ;
     for(let i=0 ; i<products.length ; i++){
         table += `<tr>
-        <td>${i+1}</td>
-        <td>${products[i].title}</td>
-        <td>${products[i].price}</td>
-        <td>${products[i].taxes}</td>
-        <td>${products[i].ads}</td>
-        <td>${products[i].discount}</td>
-        <td>${products[i].total}</td>
-        <td>${products[i].category}</td>
-        <td> <button onclick=updataDate(${i}) id="update">update</button></td>
-        <td> <button onclick=deleteProduct(${i}) id="delete">delete</button></td>
+            <td>${i+1}</td>
+            <td>${products[i].title}</td>
+            <td>${products[i].price}</td>
+            <td>${products[i].taxes}</td>
+            <td>${products[i].ads}</td>
+            <td>${products[i].discount}</td>
+            <td>${products[i].total}</td>
+            <td>${products[i].category}</td>
+            <td> <button onclick=updataDate(${i}) id="update">update</button></td>
+            <td> <button onclick=deleteProduct(${i}) id="delete">delete</button></td>
         </tr>`
     }
     tbody.innerHTML = table;
