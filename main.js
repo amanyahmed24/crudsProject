@@ -80,12 +80,12 @@ function clearInputs(){
 
 // read products 
 function showData(){
- let tbody = document.getElementById("tbody");
     let table ;
+    
     for(let i=0 ; i<products.length ; i++){
         table += `<tr>
             <td>${i+1}</td>
-            <td>title</td>
+            <td>${products[i].title}</td>
             <td>${products[i].price}</td>
             <td>${products[i].taxes}</td>
             <td>${products[i].ads}</td>
@@ -96,6 +96,7 @@ function showData(){
             <td> <button onclick=deleteProduct(${i}) id="delete">delete</button></td>
         </tr>`
     }
+    let tbody = document.getElementById("tbody");
     tbody.innerHTML = table;
     let deleteAll = document.getElementById("delete-all");
     if(products.length>0){
