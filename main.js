@@ -79,9 +79,8 @@ function clearInputs(){
 };
 
 // read products 
- let tbody = document.getElementById("tbody");
 function showData(){
- 
+ let tbody = document.getElementById("tbody");
     let table ;
     for(let i=0 ; i<products.length ; i++){
         table += `<tr>
