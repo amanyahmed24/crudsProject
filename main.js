@@ -28,11 +28,11 @@ function getTotal (){
 
 // create 
 let products ;
-if(localStorage.product != null){
-    products=JSON.parse(localStorage.product)
-}else{
+// if(localStorage.product != null){
+//     products=JSON.parse(localStorage.product)
+// }else{
     products=[];
-}
+// }
 submit.onclick = function(){
     let newPro = {
         title : title.value,
