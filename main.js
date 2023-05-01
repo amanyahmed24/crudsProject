@@ -1,4 +1,4 @@
-let title = document.getElementById("title")
+let title = document.getElementById("title");
 let price= document.getElementById('price');
 let taxes= document.getElementById("taxes");
 let discount= document.getElementById("discount");
