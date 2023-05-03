@@ -80,7 +80,7 @@ function clearInputs(){
 
 // read products 
 function showData(){
-    let table ;
+    let table = "";
     
     for(let i=0 ; i<products.length ; i++){
         table += `<tr>
