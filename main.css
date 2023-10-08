@@ -12,6 +12,7 @@ body{
 }
 
 .container{
+    display: block;
     width: 80%;
     margin: auto;
 }

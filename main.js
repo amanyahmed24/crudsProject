@@ -1,3 +1,5 @@
+//define all variables
+// *********
 let title = document.getElementById("title");
 let price= document.getElementById('price');
 let taxes= document.getElementById("taxes");
@@ -7,11 +9,20 @@ let total= document.getElementById("total");
 let amount= document.getElementById("amount");
 let category= document.getElementById("category");
 let submit = document.getElementById("create");
-
+//mood flag
 let mood = "create" ;
+
+//search flag
 let searchMood;
+//temp array to hold data
 let temp;
-// get total
+
+//array that hold all products
+let products ;
+// *********
+//end of variables
+
+// get total price
 
 function getTotal (){
     if(price.value != ""){
@@ -26,13 +37,14 @@ function getTotal (){
     }
 };
 
-// create 
-let products ;
-// if(localStorage.product != null){
-//     products=JSON.parse(localStorage.product)
-// }else{
+// create new product
+//check if there is items in local storage
+if(localStorage.product != null){
+    products=JSON.parse(localStorage.product);
+}else{
     products=[];
-// }
+}
+//handling submit event
 submit.onclick = function(){
     let newPro = {
         title : title.value,
@@ -44,29 +56,33 @@ submit.onclick = function(){
         amount : amount.value ,
         category : category.value
     }
+    //if there is no actual data
     if(title.value!="" && price.value!=""){
         if(mood === "create"){
+
+            //handling amount method
             if(newPro.amount > 1){
                 for(let j = 0 ; j<newPro.amount; j++) {
-                    products.push(newPro)
+                    products.push(newPro);
                 }
             }else{
-                products.push(newPro)
+                //only one product added
+                products.push(newPro);
             }
         }else{
-            products[temp] = newPro 
-            mood = "create"
-            submit.innerHTML = "create"
-            amount.style.display = "block"
+            products[temp] = newPro ;
+            mood = "create";
+            submit.innerHTML = "create";
+            amount.style.display = "block";
         }
-        
+        //save in local storage
         localStorage.setItem("product" , JSON.stringify(products));
         clearInputs();
         showData();
     }
 }
 
-//clear inputs 
+//clear inputs after adding
 function clearInputs(){
     title.value =""
     price.value ="";
@@ -78,7 +94,7 @@ function clearInputs(){
     category.value =""
 };
 
-// read products 
+// read products to show
 function showData(){
     let table = "";
     
@@ -97,40 +113,51 @@ function showData(){
         </tr>`
     }
     let tbody = document.getElementById("tbody");
+    //fill table data
     tbody.innerHTML = table;
     let deleteAll = document.getElementById("delete-all");
     if(products.length>0){
         deleteAll.innerHTML = `<button onclick=deletAll() id="all">Delet All (${products.length})</button> `
     }else{
+        //hide delete all button if there is no products
         deleteAll.innerHTML = ""
     }
 
 };
+//fire the function
 showData();
 
-// delete 
+// delete handling
 function deleteProduct(i){
     products.splice(i,1);
     localStorage.product = JSON.stringify(products);
-    showData()
+    //show new data after deleting
+    showData();
 };
 
+//delete all handling
 function deletAll(){
-    products.splice(0)
-    localStorage.clear()
+    products.splice(0);
+    //delete all in local storage
+    localStorage.clear();
     showData()
 };
 
-//update
+//update handling
 function updataDate (i){
-    title.value = products[i].title
-    price.value = products[i].price
-    taxes.value = products[i].taxes
-    ads.value = products[i].ads
-    amount.style.display = "none"
-    submit.innerHTML = "Update"
+
+    //get old data
+    title.value = products[i].title;
+    price.value = products[i].price;
+    taxes.value = products[i].taxes;
+    ads.value = products[i].ads;
+    amount.style.display = "none";
+    submit.innerHTML = "Update";
     temp = i ;
-    mood="update"
+
+    //change mood flag
+    mood="update";
+    //scroll top to the product
     scroll({
         top:0 ,
         behavior : "smooth"
@@ -138,21 +165,23 @@ function updataDate (i){
     getTotal()
 };
 
-// search
+// search handling
 
 function searchbyMood (id){
     let searchIcon = document.getElementById("search");
     if(id=="search-title"){
-        searchMood="title"
+        searchMood="title";
     }else{
-        searchMood="category"
+        searchMood="category";
     }    
-    searchIcon.value=""
+    searchIcon.value="";
 };  
 function searchProduct(value){
     let table ;
     if(searchMood==="title"){
+        //search by title
         for(let i = 0 ; i<products.length; i++){
+            //filter data to match title
             if(products[i].title.includes(value)){
                 table += `<tr>
                 <td>${i}</td>
@@ -169,6 +198,7 @@ function searchProduct(value){
                 
             }
         }
+        //search by category
     }else{
         for(let i = 0 ; i<products.length; i++){
             if(products[i].category.includes(value)){
@@ -188,6 +218,7 @@ function searchProduct(value){
             }
         }
     }
+    //fill table data
     let tbody = document.getElementById("tbody");
     tbody.innerHTML = table;
 };
@@ -195,7 +226,8 @@ function searchProduct(value){
 // light mood 
 
  function lightMood(){
-        document.body.style.cssText="background-color:white; color:#222"
+        document.body.style.cssText="background-color:white; color:#222";
+        //get all inputs to change style
         let inputs = document.querySelectorAll("input");
         for(let i = 0; i<inputs.length; i++){
          inputs[i].style.cssText="background: rgb(68 68 68 / 21%);; color: #111;"
@@ -204,6 +236,8 @@ function searchProduct(value){
         document.getElementById("sun").style.display="block"
         document.getElementById("moon").style.display="none"
  };
+
+ //dark mood 
 
 function darkMood(){
     document.body.style.cssText=" background-color: #222;color: #fff;"
